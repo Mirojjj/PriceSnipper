@@ -5,6 +5,10 @@ import React from 'react'
 import { getAllProducts } from '@/lib/actions'
 import ProductCard from '@/components/ProductCard'
 
+export const maxDuration = 60;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 const Home = async() => {
   const allProducts  = await getAllProducts();
 

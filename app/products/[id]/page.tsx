@@ -7,6 +7,11 @@ import { formatNumber } from "@/lib/utils";
 import ProductCard from "@/components/ProductCard";
 import Modal from "@/components/Model";
 
+export const maxDuration = 60; 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+
 type Props= {
   params: {id: string}
 }
