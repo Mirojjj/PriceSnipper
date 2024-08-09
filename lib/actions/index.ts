@@ -102,6 +102,8 @@ export async function addUserEmailToProduct(productId: string, userEmail: string
         product.users.push({ email: userEmail });
   
         await product.save();
+
+        console.log("user added")
   
         const emailContent = await generateEmailBody(product, "WELCOME");
   
