@@ -6,7 +6,7 @@ import Product from "@/lib/models/product.model";
 import { scrapeAmazonProduct } from "@/lib/scrapper";
 import { generateEmailBody, sendEmail } from "@/lib/nodemailer";
 
-export const maxDuration = 60;
+export const maxDuration = 60; 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
@@ -14,9 +14,8 @@ export async function GET(request: Request) {
   try {
     connectToDB();
 
-    const products = await Product.find({});
+    const products = await Product.findById({});
 
-    console.log("product found");
     if (!products) throw new Error("No product fetched");
 
     // ======================== 1 SCRAPE LATEST PRODUCT DETAILS & UPDATE DB
@@ -25,7 +24,6 @@ export async function GET(request: Request) {
         // Scrape product
         const scrapedProduct = await scrapeAmazonProduct(currentProduct.url);
 
-        console.log("product scraped")
         if (!scrapedProduct) return;
 
         const updatedPriceHistory = [
@@ -69,9 +67,6 @@ export async function GET(request: Request) {
           const userEmails = updatedProduct.users.map((user: any) => user.email);
           // Send email notification
           await sendEmail(emailContent, userEmails);
-
-          console.log("email sent")
-
         }
 
         return updatedProduct;
