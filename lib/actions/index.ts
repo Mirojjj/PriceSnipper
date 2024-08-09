@@ -110,6 +110,7 @@ export async function addUserEmailToProduct(productId: string, userEmail: string
         console.log(emailContent);
 
         await sendEmail(emailContent, [userEmail]);
+        
         console.log(userEmail);
 
 
