@@ -16,6 +16,8 @@ export async function GET(request: Request) {
 
     const products = await Product.find({});
 
+    console.log(products);
+
     if (!products) throw new Error("No product fetched");
 
     // ======================== 1 SCRAPE LATEST PRODUCT DETAILS & UPDATE DB
