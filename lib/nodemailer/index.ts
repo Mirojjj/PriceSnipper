@@ -83,7 +83,7 @@ export async function generateEmailBody(
 }
 
 const transporter = nodemailer.createTransport({
-  service: 'smtp.office365.com',
+  service: 'hotmail',
   port: 587,
   secure: false,
   auth: {
