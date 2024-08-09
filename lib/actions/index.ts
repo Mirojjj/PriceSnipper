@@ -8,6 +8,10 @@ import { getAveragePrice, getHighestPrice, getLowestPrice } from "../utils";
 import { generateEmailBody, sendEmail } from "../nodemailer";
 import {  User } from "@/types";
 
+export const maxDuration = 60; 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function scrapeAndStoreProduct(productUrl:string) {
     if(!productUrl) return;
 
@@ -106,8 +110,10 @@ export async function addUserEmailToProduct(productId: string, userEmail: string
         console.log("user added")
   
         const emailContent = await generateEmailBody(product, "WELCOME");
-  
+        
         await sendEmail(emailContent, [userEmail]);
+
+        console.log("email sent")
       }
     } catch (error) {
       console.log(error);
